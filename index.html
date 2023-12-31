@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="newyearCard">
+        <div class="cardFront">
+          <h3 class="happy">HAPPY NEW YEAR!!!</h3>
+          <h3 class="happy">HAPPY NEW YEAR 2024</h3>
+          <div class="balloons">
+            <div class="balloonOne"></div>
+            <div class="balloonTwo"></div>
+            <div class="balloonThree"></div>
+            <div class="balloonFour"></div>
+            <div class="balloonFive"></div>
+            <div class="balloonSix"></div>
+            <div class="balloonSeven"></div>
+            <div class="balloonEight"></div>
+            <div class="balloon-1"></div>
+            <div class="balloon-2"></div>
+            <div class="balloon-3"></div>
+            <div class="balloon-4"></div>
+            <div class="balloon-5"></div>
+            <div class="balloon-6"></div>
+            <div class="balloon-7"></div>
+            <div class="balloon-8"></div>
+          </div>
+        </div>
+        <div class="cardInside">
+          <h3 class="back">HAPPY NEW YEAR!</h3>
+          <h3 class="back">HAPPY NEW YEAR 2024</h3>
+          <p>Dear Friend,</p>
+          <p>
+            In 2024, may you find the courage to embrace change, welcoming new opportunities and adventures with open arms.
+            As the new year unfolds, may your dreams take flight and reach new heights. ...
+            Wishing You an Amazing 2024 New Year. ...
+            Pop, fizz, clink—let's toast to the future and pour another drink!!!
+          </p>
+          <p class="name"> </p>
+        </div>
+        <audio id="newYearSong" src="hn.mp3"></audio>
+      
+        <script>
+          document.addEventListener('DOMContentLoaded', (event) => {
+              const newYearSong = document.getElementById('newYearSong');
+              const newYearCard = document.querySelector('.newyearCard');
+              let isPlaying = false;
+              let bubbleInterval;
+      
+              newYearCard.addEventListener('click', function(event) {
+                  if (!isPlaying) {
+                      newYearSong.play();
+                      isPlaying = true;
+                      startBubbleGeneration();
+      
+                      setTimeout(() => {
+                          newYearSong.pause();
+                          newYearSong.currentTime = 0;
+                          isPlaying = false;
+                          stopBubbleGeneration();
+                      }, 30000); // Stop music after 30 seconds
+                  } else {
+                      newYearSong.pause();
+                      newYearSong.currentTime = 0;
+                      isPlaying = false;
+                      stopBubbleGeneration();
+                  }
+              });
+      
+              function startBubbleGeneration() {
+                  bubbleInterval = setInterval(() => {
+                      createBubble();
+                  }, 500); // Create a new bubble every 500ms
+              }
+      
+              function stopBubbleGeneration() {
+                  clearInterval(bubbleInterval);
+              }
+      
+              function createBubble() {
+                  var bubble = document.createElement('span');
+                  bubble.classList.add('bubble');
+                  var size = Math.random() * 60;
+                  bubble.style.width = 20 + size + 'px';
+                  bubble.style.height = 20 + size + 'px';
+                  bubble.style.left = Math.random() * window.innerWidth + 'px';
+                  bubble.style.top = window.innerHeight + 'px';
+                  bubble.style.backgroundColor = getRandomColor();
+      
+                  document.body.appendChild(bubble);
+                  
+                  // Remove the bubble after it rises
+                  setTimeout(function() {
+                      bubble.remove();
+                  }, 4000);
+              }
+      
+              function getRandomColor() {
+                  var letters = '0123456789ABCDEF';
+                  var color = '#';
+                  for (var i = 0; i < 6; i++) {
+                      color += letters[Math.floor(Math.random() * 16)];
+                  }
+                  return color;
+              }
+          });
+      </script>
+      
+        
+    
+
+</body>
+</html>
